@@ -1,0 +1,56 @@
+Binary to Decimal App
+
+Description
+1.  Choose number of binary digits to be tested on
+2.  Create and display a rand binary digit 
+3.  Supply the player w 4 answer choices - only one is correct
+3.  Get players answer
+4.  If incorrect display correct answer
+5.  Update stats
+
+Triggers:
+1.  Change in number of bits
+2.  An answer to the question is received
+3.  Clear stats is requested
+
+Actors:
+1.  Player who answers the question
+2.  Number
+3.  Stats
+4.  The Game
+
+Preconditions:
+1.  Number of bits is selected
+2.  A random number has been generated
+3.  A set of 4 answers is available
+4.  Stats are set to zero
+
+Goals:
+1.  Continually supply new binary questions and answer choices
+2.  Track percentage of correct answers
+
+Not Available:
+1.  Reveal correct answer to incorrectly answerd questions
+2.  History of most common mistakes
+
+-------------------------------------------------------------
+
+Steps of Execution:
+
+1a. Stats are set to zero
+2. A random decimal number is generated
+    a) Get the number of binary digits
+    b) Calculate max decimal value based on the number of binary digits 
+    c) Generate a random number w/in the range 0 to max decimal value
+    d) Generate a sorted array of 4 answer choices
+3.  The number is displayed in Binary format
+4.  The answer choices kare displayed as answer buttons 
+5.  The player selects an answer 
+6.  The stats are updated based on the correctness of the answer
+7.  The process repeats indefinitly
+8.  If the number of binary digits is changed, the process contines from step 1b.
+8.  The stats are reset to zero if the 'Clear Stats' button is clicked.
+
+
+
+
