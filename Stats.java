@@ -38,7 +38,7 @@ public class Stats {
      * Returns the number of correct answers since the start of the app or the
      * last time clearStats() was called
      *
-     * @return  the value of the class field 'correct' 
+     * @return  the number of correct answers
      */
     public static int getCorrect() {
         return correct;
@@ -48,7 +48,7 @@ public class Stats {
      * Returns the number of worng answers since the start of the app or the
      * last time clearStats() was called
      *
-     * @return  the value of the class field 'worng' 
+     * @return  the number of wrong answers.
      */
     public static int getWrong() {
         return wrong;
@@ -69,7 +69,7 @@ public class Stats {
     }
 
     /**
-     * Resets the values of the class fields 'correct' and 'wrong' to zero
+     * Resets the values of 'correct' and 'wrong' to zero
      */
     public static void clearStats() {
         correct = 0;
