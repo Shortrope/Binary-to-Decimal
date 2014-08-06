@@ -4,24 +4,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Mario on 7/24/2014.
- *
+ * Binary to Decimal training program allows the user to practice converting
+ * binary numbers into decimal.  This is a worthwhile skill for taking Cisco 
+ * certification tests.
+ * The program continually displays a new binary number and a set of 4 answer
+ * choices.  After the user answers each question the stats section updates
+ * your score.
+ * 
  * ToDo:
- *      Implement the Singularity Design Pattern with the Num and Stats Classes
+ *      Implement the Singleton Design Pattern with the Num and Stats Classes
  *      Visual (color) indicator of correct/wrong answer
+ *      Add '%' to the score
  *      Better Stats table
  *      Resize 'Clear Stats' button
  *      Give answer buttons a fixed size so they do not change size with larger
  *      numbers
+ *      The text area should only show the binary / answer to incorrect answers
  *      Give the textArea (log) a scroll bar
+ *      The log should be diplayed in two ways:
+ *          1. all incorrect answers as they occur
+ *          2. incorrect answers and their frequency listed in decending order
  * 
- * Fields
- * Constructor
- *  Panels
- *  Frame
- * Listeners
- * Other methods
- *
+ * 7/24/2014.
+ * @author Mario Kaack
  */
 public class BtoDGui extends JFrame {
 
@@ -156,6 +161,7 @@ public class BtoDGui extends JFrame {
         }
     }
 
+    // Displays a new binary number and its answer choices
     private void newQuestion() {
         binaryStingLabel.setText(number.getNextBinaryString());
         int[] answers = number.getAnswerChoices();
@@ -165,6 +171,7 @@ public class BtoDGui extends JFrame {
 
     }
 
+    // Stats are calculated and displayed.  Done after an answer has been chosen
     private void updateStats() {
         correct.setText(Integer.toString(Stats.getCorrect()));
         wrong.setText(Integer.toString(Stats.getWrong()));
