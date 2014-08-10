@@ -12,16 +12,15 @@ import java.awt.event.ActionListener;
  * your score.
  * 
  * ToDo:
+ *      Is there an validation needed to ensure proper inputs?
  *      Implement the Singleton Design Pattern with the Num and Stats Classes
  *      Visual (color) indicator of correct/wrong answer
- *      Add '%' to the score
  *      Better Stats table
  *      Resize 'Clear Stats' button
  *      Give answer buttons a fixed size so they do not change size with larger
  *      numbers
- *      The text area should only show the binary / answer to incorrect answers
- *      Give the textArea (log) a scroll bar
- *      The log should be diplayed in two ways:
+ *      Create a log of incorrect answers
+ *          The log should be diplayed in two ways:
  *          1. all incorrect answers as they occur
  *          2. incorrect answers and their frequency listed in decending order
  * 
@@ -41,8 +40,10 @@ public class BtoDGui extends JFrame {
     JLabel correct;
     JLabel wrong;
     JLabel score;
+    JTable statsTable;
     JButton clearStats;
-    JTextArea logArea = new JTextArea(20,20);
+    //JTextArea logArea = new JTextArea(20,20);  // Changed to JLabel feedback
+    JLabel feedback = new JLabel("");
 
 
     public BtoDGui() {
@@ -86,6 +87,17 @@ public class BtoDGui extends JFrame {
         }
         this.add(answerPanel);
 
+
+        // Try JTable
+        String[] statsColNames = {"Correct", "Wrong", "Score"};
+        Object[][] data = { {0,0,0} };
+        statsTable = new JTable(data, statsColNames);
+        JPanel statsPanel = new JPanel(new BorderLayout());
+        statsPanel.add(statsTable.getTableHeader(), BorderLayout.PAGE_START);
+        statsPanel.add(statsTable, BorderLayout.CENTER);
+        this.add(statsPanel);
+
+        /*
         GridLayout gridForStatsPanel = new GridLayout(3,3);
         JPanel statsPanel = new JPanel(gridForStatsPanel);
         //this.setLayout(gridLayout);
@@ -94,7 +106,7 @@ public class BtoDGui extends JFrame {
         JLabel scoreLabel = new JLabel("Score");
         correct = new JLabel("0");
         wrong = new JLabel("0");
-        score = new JLabel("0");
+        score = new JLabel("0%");
         this.clearStats = new JButton("Clear Stats");
         ListenForClearStats lForClearStats = new ListenForClearStats();
         clearStats.addActionListener(lForClearStats);
@@ -106,11 +118,15 @@ public class BtoDGui extends JFrame {
         statsPanel.add(score);
         statsPanel.add(this.clearStats);
         this.add(statsPanel);
+        */
 
         JPanel logPanel = new JPanel();
+        /*
         logArea.setLineWrap(true);
         logArea.setWrapStyleWord(true);
         logPanel.add(logArea);
+        */
+        logPanel.add(feedback);
         this.add(logPanel);
 
         this.setSize(350, 450);
@@ -140,12 +156,24 @@ public class BtoDGui extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             String answer = ((JButton)e.getSource()).getText();
-            logArea.append(e.getActionCommand() + ", ");
             if (Integer.parseInt(answer) == number.getDecimal()) {
                 Stats.incCorrect();
+                feedback.setText("");
                 newQuestion();
             } else {
                 Stats.incWrong();
+                /*
+                logArea.insert(number.getBinaryString() +" = "+
+                               number.getDecimal() +
+                               "\nYour answer: "+ 
+                               e.getActionCommand() +
+                               "\n", 0);
+                */
+                feedback.setText(number.getBinaryString() +" = "+
+                               number.getDecimal() +
+                               "    :    Your answer: "+ 
+                               e.getActionCommand() +
+                               "\n");
             }
             updateStats();
         }
@@ -175,7 +203,7 @@ public class BtoDGui extends JFrame {
     private void updateStats() {
         correct.setText(Integer.toString(Stats.getCorrect()));
         wrong.setText(Integer.toString(Stats.getWrong()));
-        score.setText(Integer.toString(Stats.getScore()));
+        score.setText(Integer.toString(Stats.getScore()) + "%");
     }
 
 
