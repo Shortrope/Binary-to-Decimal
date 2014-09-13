@@ -1,0 +1,4 @@
+*.swp
+*.violet.*
+*.class
+/build/

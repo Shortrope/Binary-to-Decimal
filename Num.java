@@ -16,6 +16,8 @@ import java.util.Random;
  * 7/23/2014.
  *
  * @author  Mario Kaack
+ *
+ * @TODO Rename method Num(),  What is it?
  */
 public class Num {
 
