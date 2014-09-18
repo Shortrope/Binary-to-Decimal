@@ -2,3 +2,4 @@
 *.violet.*
 *.class
 /build/
+/.idea/
