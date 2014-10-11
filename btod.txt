@@ -31,7 +31,10 @@ Goals:
 
 Not Available:
 1.  Reveal correct answer to incorrectly answerd questions
-2.  History of most common mistakes
+2.  Do not give the same number 2 times in a row
+3.  Subnet mask testing. Choice w/in the 'number of binary digits' pulldown
+4.  Switch between keyboard / button_clk answer input
+5.  History of most common mistakes
 
 -------------------------------------------------------------
 
