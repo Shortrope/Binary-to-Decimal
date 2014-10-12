@@ -1,5 +1,6 @@
 *.swp
-*.violet.*
 *.class
 /build/
 /.idea/
+*.MF
+
